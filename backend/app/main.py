@@ -34,7 +34,9 @@ async def lifespan(_: FastAPI) -> AsyncGenerator[None, None]:
 
 
 app = FastAPI(title=settings.app_name, version="2.0.0", lifespan=lifespan)
-
+@app.get("/")
+def read_root():
+    return {"status": "ok", "message": "API ZSM Hafalan Santri Berjalan!"}
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,
